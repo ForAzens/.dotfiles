@@ -16,11 +16,16 @@ utils.map('n', '<leader>gs', ':Neogit<CR>')
 utils.map('n', '<leader>gb', ':Telescope git_branches<CR>')
 
 -- Telescope
-utils.map('n', '<leader>ff', ':Telescope find_files<CR>')
+utils.map('n', '<leader>ff', ':Telescope find_files hidden=true<CR>')
 utils.map('n', '<leader>fg', ':Telescope live_grep<CR>')
 utils.map('n', '<leader>fb', ':Telescope buffers<CR>')
 utils.map('n', '<leader>fh', ':Telescope help_tags<CR>')
 utils.map('n', '<leader>fs', ':Telescope live_grep<CR>')
+
+utils.map('n', '<leader>gws',
+          ':lua require("telescope").extensions.git_worktree.git_worktrees()<CR>')
+utils.map('n', '<leader>gwa',
+          ':lua require("telescope").extensions.git_worktree.create_git_worktree()<CR>')
 
 -- Hop
 utils.map('n', 's', ':HopWord<CR>')

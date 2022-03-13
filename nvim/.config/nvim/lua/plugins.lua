@@ -108,5 +108,7 @@ return require('packer').startup(function()
     use {"windwp/nvim-ts-autotag"}
 
     use 'sunjon/shade.nvim'
+
+    use 'ThePrimeagen/git-worktree.nvim'
 end)
 

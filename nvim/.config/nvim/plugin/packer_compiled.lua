@@ -124,6 +124,11 @@ _G.packer_plugins = {
     path = "/home/azenis/.local/share/nvim/site/pack/packer/start/fzf",
     url = "https://github.com/junegunn/fzf"
   },
+  ["git-worktree.nvim"] = {
+    loaded = true,
+    path = "/home/azenis/.local/share/nvim/site/pack/packer/start/git-worktree.nvim",
+    url = "https://github.com/ThePrimeagen/git-worktree.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/azenis/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
