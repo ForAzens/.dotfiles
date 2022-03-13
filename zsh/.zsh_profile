@@ -1,0 +1,10 @@
+VIM="nvim"
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
+
+path+=("$HOME/.local/bin")
+export PATH
+
+# To open tmux-sessionizer
+bindkey -s ^f "tmux-sessionizer\n"
