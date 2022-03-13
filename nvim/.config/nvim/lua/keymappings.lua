@@ -32,3 +32,7 @@ utils.map('n', '<leader>cp', ':cprevious<CR>')
 
 -- Fix API erros when using Ctrl-C
 utils.map('i', '<C-c>', '<Esc>')
+
+-- Open tmux sessionizer
+utils.map('n', '<C-f>', ':silent !tmux neww tmux-sessionizer<CR>',
+          {silent = true})
