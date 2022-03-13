@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-for folder in $(ls | xargs)
+PERMITTED_FOLDERS=$(find . -mindepth 1 -maxdepth 1 -type d | grep -v '.git')
+
+for folder in $PERMITTED_FOLDERS
 do
   stow -D $folder
   stow $folder
