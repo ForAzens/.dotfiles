@@ -41,3 +41,15 @@ utils.map('i', '<C-c>', '<Esc>')
 -- Open tmux sessionizer
 utils.map('n', '<C-f>', ':silent !tmux neww tmux-sessionizer<CR>',
           {silent = true})
+
+-- Keeping it centered
+utils.map('n', 'n', 'nzzzv')
+utils.map('n', 'N', 'Nzzzv')
+utils.map('n', 'J', 'mzJ`z')
+
+-- Moving text
+utils.map('v', 'J', ":m '>+1<CR>gv=gv")
+utils.map('v', 'K', ":m '<-2<CR>gv=gv")
+utils.map('n', '<leader>j', ':m .+1<CR>==')
+utils.map('n', '<leader>k', ':m .-2<CR>==')
+
