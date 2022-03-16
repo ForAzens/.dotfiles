@@ -18,3 +18,11 @@ function zle_tmux_sessionizer {
 
 # To open tmux-sessionizer
 zle -N zle_tmux_sessionizer; bindkey ^f zle_tmux_sessionizer
+
+# Set editor to neovim to different actions, such as git commit
+export EDITOR="nvim"
+
+if ! command -v bat &> /dev/null 
+then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
