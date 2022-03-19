@@ -76,9 +76,9 @@ doc() {
 
 
   if [[ "$dpath" == "$frag" ]]; then
-    glow /tmp/devdocs_index.md -p
+    glow "$LANGUAGE_INDEX" -p
   else
-    PAGER="less -p${frag}" glow /tmp/devdocs_index.md -p
+    PAGER="less -p${frag}" glow "$LANGUAGE_INDEX" -p
   fi
 }
 
