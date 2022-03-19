@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+# Select docs from devdocs.io using fzf and display it in the CLI
+
+# Dependencies: jq, fzf, curl, pandoc, glow
+
+# Based in https://github.com/whiteinge/dotfiles/blob/9b3650b/bin/devdocs-local#L57
+
+LANGUAGE_LIST_FILE=/tmp/devdocs_language_list
+LANGUAGE_INDEX=/tmp/devdocs_index.md
+DEVDOCS_DIR="${HOME}/tmp/docs/devdocs.io"
+
+download_list() {
+  docs_link=`curl -s "https://devdocs.io/" | 
+    grep -E "docs-.*\.js" |
+    sed "s/.*\"\(.*\)\".*/\1/"` 
+
+  curl -sS "https://devdocs.io$docs_link" > $LANGUAGE_LIST_FILE
+}
+
+
+list() {
+  if [[ ! -f "$LANGUAGE_LIST_FILE" ]]; then
+    download_list
+  fi
+
+  cat $LANGUAGE_LIST_FILE |
+  grep -E "name|slug|mtime" |
+  xargs -L 3 |
+  sed "s/name: \(.*\), slug: \(.*\), mtime: \(.*\),/\1\t\2\t\3/"
+}
+
+download() {
+  selection=`list | fzf -d "\t" --with-nth 1,2 --prompt "Language to download > "`
+  test -n "$selection" || return
+  slug=`echo "$selection" | cut -f 2`
+  mtime=`echo "$selection" | cut -f 3`
+
+  slug_dir="${DEVDOCS_DIR}/${slug}"
+
+  mkdir -p "$slug_dir"
+  cd "$slug_dir"
+
+  if [[ -f "${slug_dir}/mtime" ]]; then
+    old_mtime=`cat ${slug_dir}/mtime`
+
+    if [[ "$old_mtime" -ge "$mtime" ]]; then
+      echo "${slug} already at the last version" 
+      return;
+    fi
+  fi
+
+  echo "$mtime" > mtime
+  echo "Installing last version of ${slug}"
+
+  curl -sS -o index.json "https://devdocs.io/docs/${slug}/index.json?${mtime}"
+  curl -sS -o db.json "https://documents.devdocs.io/${slug}/db.json?${mtime}"
+}
+
+doc() {
+  slug=`find "$DEVDOCS_DIR" -mindepth 1 -maxdepth 1 -type d -exec basename {} \; | 
+    fzf --prompt "Enter language > "`
+  test -n "$slug" || return
+  selected_dir="${DEVDOCS_DIR}/${slug}"
+  
+  selected_topic=`jq -r '.entries[] | "\(.name) --- \(.path) --- (\(.type))"' "${selected_dir}/index.json" | 
+    fzf --prompt "Search topic > "`
+  test -n "$selected_topic" || return
+  path=`echo $selected_topic | sed "s/ --- /\t/g" | cut -f 2`
+  
+  dpath=`echo $path |cut -d "#" -f 1`
+  frag=`echo $path |cut -d "#" -f 2`
+
+  jq -r ".\"${dpath}\"" "${selected_dir}/db.json" |
+    pandoc --from=html --to=markdown |
+    sed "s/{.*data-language=\"\(.*\)\".*/\1/g" > "$LANGUAGE_INDEX"
+
+
+  if [[ "$dpath" == "$frag" ]]; then
+    glow /tmp/devdocs_index.md -p
+  else
+    PAGER="less -p${frag}" glow /tmp/devdocs_index.md -p
+  fi
+}
+
+if [[ $# -eq 0 ]]; then
+  doc
+else
+  cmd=$1
+  shift
+
+  "$cmd" "$0"
+fi
