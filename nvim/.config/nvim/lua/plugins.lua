@@ -49,7 +49,7 @@ return require('packer').startup(function()
     use {'tpope/vim-dispatch'}
 
     -- Fugitive for Git
-    -- use {'tpope/vim-fugitive'}
+    use {'tpope/vim-fugitive'}
     -- Surround
     use {'tpope/vim-surround'}
 
@@ -110,5 +110,9 @@ return require('packer').startup(function()
     use 'sunjon/shade.nvim'
 
     use 'ThePrimeagen/git-worktree.nvim'
+
+    use 'onsails/diaglist.nvim'
+
+    use 'ThePrimeagen/harpoon'
 end)
 
