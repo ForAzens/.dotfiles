@@ -1,23 +1,31 @@
+-- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-
+-- local hotkeys_popup = require("awful.hotkeys_popup").widget
 local hotkeys_popup = require("awful.hotkeys_popup")
-
+-- Menubar library
 local menubar = require("menubar")
 
+-- Resource Configuration
 local modkey = RC.vars.modkey
 local terminal = RC.vars.terminal
 
 local _M = {}
 
-function _M.get()
+-- reading
+-- https://awesomewm.org/wiki/Global_Keybindings
 
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+
+function _M.get()
     local globalkeys = gears.table.join(awful.key({modkey}, "s",
                                                   hotkeys_popup.show_help, {
         description = "show help",
         group = "awesome"
-    }), awful.key({modkey}, "Left", awful.tag.viewprev,
-                  {description = "view previous", group = "tag"}),
+    }), --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    -- Tag browsing
+    awful.key({modkey}, "Left", awful.tag.viewprev,
+              {description = "view previous", group = "tag"}),
                                         awful.key({modkey}, "Right",
                                                   awful.tag.viewnext, {
         description = "view next",
@@ -32,8 +40,11 @@ function _M.get()
         awful.client.focus.byidx(-1)
     end, {description = "focus previous by index", group = "client"}),
                                         awful.key({modkey}, "w", function()
-        mymainmenu:show()
-    end, {description = "show main menu", group = "awesome"}), -- Layout manipulation
+        RC.mainmenu:show()
+    end, {description = "show main menu", group = "awesome"}),
+
+    --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    -- Layout manipulation
                                         awful.key({modkey, "Shift"}, "j",
                                                   function()
         awful.client.swap.byidx(1)
@@ -57,9 +68,14 @@ function _M.get()
     }), awful.key({modkey}, "Tab", function()
         awful.client.focus.history.previous()
         if client.focus then client.focus:raise() end
-    end, {description = "go back", group = "client"}), -- Standard program
-    awful.key({modkey}, "Return", function() awful.spawn(terminal) end,
-              {description = "open a terminal", group = "launcher"}),
+    end, {description = "go back", group = "client"}),
+
+    --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    -- Standard program
+                                        awful.key({modkey}, "Return",
+                                                  function()
+        awful.spawn(terminal)
+    end, {description = "open a terminal", group = "launcher"}),
                                         awful.key({modkey, "Control"}, "r",
                                                   awesome.restart, {
         description = "reload awesome",
@@ -67,6 +83,8 @@ function _M.get()
     }), awful.key({modkey, "Shift"}, "q", awesome.quit,
                   {description = "quit awesome", group = "awesome"}),
 
+    --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    -- Layout manipulation
                                         awful.key({modkey}, "l", function()
         awful.tag.incmwfact(0.05)
     end, {description = "increase master width factor", group = "layout"}),
@@ -105,10 +123,13 @@ function _M.get()
         if c then
             c:emit_signal("request::activate", "key.unminimize", {raise = true})
         end
-    end, {description = "restore minimized", group = "client"}), -- Prompt
-    awful.key({modkey}, "r",
-              function() awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+    end, {description = "restore minimized", group = "client"}),
+
+    --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    -- Prompt
+                                        awful.key({modkey}, "r", function()
+        awful.screen.focused().mypromptbox:run()
+    end, {description = "run prompt", group = "launcher"}),
 
                                         awful.key({modkey}, "x", function()
         awful.prompt.run {
@@ -117,12 +138,45 @@ function _M.get()
             exe_callback = awful.util.eval,
             history_path = awful.util.get_cache_dir() .. "/history_eval"
         }
-    end, {description = "lua execute prompt", group = "awesome"}), -- Menubar
-    awful.key({modkey}, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}))
+    end, {description = "lua execute prompt", group = "awesome"}),
+
+    --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    -- Resize
+    -- awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize( 20,  20, -40, -40) end),
+    -- awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize(-20, -20,  40,  40) end),
+                                        awful.key({modkey, "Control"}, "Down",
+                                                  function()
+        awful.client.moveresize(0, 0, 0, -20)
+    end), awful.key({modkey, "Control"}, "Up",
+                    function() awful.client.moveresize(0, 0, 0, 20) end),
+                                        awful.key({modkey, "Control"}, "Left",
+                                                  function()
+        awful.client.moveresize(0, 0, -20, 0)
+    end), awful.key({modkey, "Control"}, "Right",
+                    function() awful.client.moveresize(0, 0, 20, 0) end),
+
+    -- Move
+                                        awful.key({modkey, "Shift"}, "Down",
+                                                  function()
+        awful.client.moveresize(0, 20, 0, 0)
+    end), awful.key({modkey, "Shift"}, "Up",
+                    function() awful.client.moveresize(0, -20, 0, 0) end),
+                                        awful.key({modkey, "Shift"}, "Left",
+                                                  function()
+        awful.client.moveresize(-20, 0, 0, 0)
+    end), awful.key({modkey, "Shift"}, "Right",
+                    function() awful.client.moveresize(20, 0, 0, 0) end),
+
+    --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+    -- Menubar
+                                        awful.key({modkey}, "p", function()
+        menubar.show()
+    end, {description = "show the menubar", group = "launcher"}))
 
     return globalkeys
 end
+
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 ---@diagnostic disable-next-line: redundant-parameter
 return setmetatable({}, {__call = function(_, ...) return _M.get(...) end})

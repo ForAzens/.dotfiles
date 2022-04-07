@@ -187,8 +187,7 @@ RC.globalkeys = bindings.globalkeys()
 RC.globalkeys = bindings.bindtotags(RC.globalkeys)
 
 -- Set keys
-root.buttons(bindings.globalbuttons())
-root.keys(bindings.globalkeys())
+root.keys(RC.globalkeys)
 -- }}}
 
 -- {{{ Rules
