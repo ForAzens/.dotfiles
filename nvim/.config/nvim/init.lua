@@ -28,6 +28,7 @@ require('lsp/solargraph')
 require('lsp_lua')
 
 -- Config
+---@diagnostic disable-next-line: different-requires
 require('config')
 
 -- Autocmds
