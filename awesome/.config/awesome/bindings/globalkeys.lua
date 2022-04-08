@@ -170,7 +170,8 @@ function _M.get()
     --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     -- Menubar
                                         awful.key({modkey}, "p", function()
-        menubar.show()
+        -- menubar.show()
+        awful.spawn.with_shell("rofi -show drun")
     end, {description = "show the menubar", group = "launcher"}))
 
     return globalkeys

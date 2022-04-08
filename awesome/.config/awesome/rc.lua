@@ -66,7 +66,9 @@ RC.launcher = awful.widget.launcher({
 menubar.utils.terminal = RC.vars.terminal
 -- }}}
 
-require("deco.statusbar")
+local statusbar = require("statusbar.default.statusbar")
+
+statusbar()
 
 -- {{{ Mouse bindings
 root.buttons(bindings.globalbuttons())

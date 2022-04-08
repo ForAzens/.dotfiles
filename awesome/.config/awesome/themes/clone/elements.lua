@@ -6,8 +6,8 @@ local dpi = xresources.apply_dpi
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-theme.font = "Terminus 10" -- "Tamsyn 10" -- "Sans 8"
-theme.taglist_font = "Roboto Condensed Regular 9"
+theme.font = "Roboto Bold 10" -- "Tamsyn 10" -- "Sans 8"
+theme.taglist_font = "Roboto Condensed Regular 8"
 
 theme.bg_normal = gmc.color['white'] .. "cc"
 theme.bg_focus = gmc.color['red300'] .. "cc"
