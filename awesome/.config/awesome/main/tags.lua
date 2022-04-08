@@ -7,8 +7,8 @@ function _M.get()
 
     awful.screen.connect_for_each_screen(function(s)
         tags[s] = awful.tag({
-            "1 -- Term", "2", "3", "4", "5", "6", "7", "8", "9"
-        }, s, RC.layouts[1])
+            "TERM", "BROWSER", "3", "4", "5", "6", "7", "8", "9"
+        }, s, RC.layouts[8])
     end)
 end
 
