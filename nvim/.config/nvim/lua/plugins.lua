@@ -114,5 +114,7 @@ return require('packer').startup(function()
     use 'onsails/diaglist.nvim'
 
     use 'ThePrimeagen/harpoon'
+
+    use 'simrat39/rust-tools.nvim'
 end)
 
