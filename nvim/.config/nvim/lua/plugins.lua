@@ -116,5 +116,7 @@ return require('packer').startup(function()
     use 'ThePrimeagen/harpoon'
 
     use 'github/copilot.vim'
+
+    use 'simrat39/rust-tools.nvim'
 end)
 

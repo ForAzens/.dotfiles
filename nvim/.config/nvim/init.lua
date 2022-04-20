@@ -25,6 +25,7 @@ require('lsp/ts_server')
 require('lsp/css')
 require('lsp/efm')
 require('lsp/solargraph')
+require('lsp/rust')
 require('lsp_lua')
 
 -- Config
