@@ -72,7 +72,7 @@ return require('packer').startup(function()
     use 'windwp/nvim-autopairs'
 
     -- Comments
-    use 'numToStr/Comment.nvim'
+    use {'numToStr/Comment.nvim', tag = 'v0.6'}
 
     -- Colorizer
     use 'norcalli/nvim-colorizer.lua'
@@ -114,5 +114,7 @@ return require('packer').startup(function()
     use 'onsails/diaglist.nvim'
 
     use 'ThePrimeagen/harpoon'
+
+    use 'github/copilot.vim'
 end)
 
