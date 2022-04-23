@@ -26,7 +26,8 @@ require('lsp/css')
 require('lsp/efm')
 require('lsp/solargraph')
 require('lsp/rust')
-require('lsp_lua')
+-- require('lsp_lua')
+require('lsp/lspinstall')
 
 -- Config
 ---@diagnostic disable-next-line: different-requires
