@@ -13,11 +13,11 @@ utils.map('n', '<leader>gs', ':Neogit<CR>')
 utils.map('n', '<leader>gb', ':Telescope git_branches<CR>')
 
 -- Telescope
-utils.map('n', '<leader>ff', ':Telescope find_files hidden=true<CR>')
-utils.map('n', '<leader>fg', ':Telescope live_grep hidden=true<CR>')
-utils.map('n', '<leader>fb', ':Telescope buffers<CR>')
-utils.map('n', '<leader>fh', ':Telescope help_tags<CR>')
-utils.map('n', '<leader>fs', ':Telescope live_grep<CR>')
+-- utils.map('n', '<leader>ff', ':Telescope find_files hidden=true<CR>')
+-- utils.map('n', '<leader>fg', ':Telescope live_grep hidden=true<CR>')
+-- utils.map('n', '<leader>fb', ':Telescope buffers<CR>')
+-- utils.map('n', '<leader>fh', ':Telescope help_tags<CR>')
+-- utils.map('n', '<leader>fs', ':Telescope live_grep<CR>')
 
 utils.map('n', '<leader>gws',
   ':lua require("telescope").extensions.git_worktree.git_worktrees()<CR>')
@@ -69,9 +69,29 @@ utils.map('n', '<C-K>', ':lua require("harpoon.ui").nav_file(3)<CR>', { silent =
 utils.map('n', '<C-L>', ':lua require("harpoon.ui").nav_file(4)<CR>', { silent = true })
 
 -- Trouble
-utils.map('n', '<leader>xx', ':Trouble<CR>', { silent = true, noremap = true })
-utils.map('n', '<leader>xw', ':Trouble workspace_diagnostics<CR>', { silent = true, noremap = true })
-utils.map('n', '<leader>xd', ':Trouble document_diagnostics<CR>', { silent = true, noremap = true })
-utils.map('n', '<leader>xl', ':Trouble loclist<CR>', { silent = true, noremap = true })
-utils.map('n', '<leader>xq', ':Trouble quickfix<CR>', { silent = true, noremap = true })
-utils.map('n', '<leader>gR', ':Trouble lsp_references<CR>', { silent = true, noremap = true })
+-- utils.map('n', '<leader>xx', ':Trouble<CR>', { silent = true, noremap = true })
+-- utils.map('n', '<leader>xw', ':Trouble workspace_diagnostics<CR>', { silent = true, noremap = true })
+-- utils.map('n', '<leader>xd', ':Trouble document_diagnostics<CR>', { silent = true, noremap = true })
+-- utils.map('n', '<leader>xl', ':Trouble loclist<CR>', { silent = true, noremap = true })
+-- utils.map('n', '<leader>xq', ':Trouble quickfix<CR>', { silent = true, noremap = true })
+-- utils.map('n', '<leader>gR', ':Trouble lsp_references<CR>', { silent = true, noremap = true })
+
+local wk = require("which-key")
+
+wk.register({
+  x = {
+    name = "Diagnostics",
+    x = { "<cmd>Trouble<CR>", "All", silent = true, noremap = true, },
+    w = { "<cmd>Trouble workspace_diagnostics<CR>", "Workspace", silent = true, noremap = true },
+    d = { "<cmd>Trouble document_diagnostics<CR>", "Current file", silent = true, noremap = true },
+    l = { "<cmd>Trouble document_diagnostics<CR>", "Open loclist", silent = true, noremap = true },
+    q = { "<cmd>Trouble document_diagnostics<CR>", "Open quickfix", silent = true, noremap = true }
+  },
+  f = {
+    name = "Files",
+    f = { "<cmd>Telescope find_files hidden=true<CR>", "Find files" },
+    s = { "<cmd>Telescope live_grep hidden=true<CR>", "Search in files" },
+    b = { "<cmd>Telescope buffers<CR>", "Buffers" },
+    h = { "<cmd>Telescope help_tags<CR>", "Help tags" }
+  }
+}, { prefix = "<leader>" })
