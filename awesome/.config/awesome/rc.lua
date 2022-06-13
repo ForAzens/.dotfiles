@@ -38,18 +38,18 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = RC.vars.modkey
 
 local main = {
-    layouts = require("main.layouts"),
-    tags = require("main.tags"),
-    menu = require("main.menu"),
-    rules = require("main.rules")
+  layouts = require("main.layouts"),
+  tags = require("main.tags"),
+  menu = require("main.menu"),
+  rules = require("main.rules")
 }
 
 local bindings = {
-    globalbuttons = require("bindings.globalbuttons"),
-    clientbuttons = require("bindings.clientbuttons"),
-    globalkeys = require("bindings.globalkeys"),
-    clientkeys = require("bindings.clientkeys"),
-    bindtotags = require("bindings.bindtotags")
+  globalbuttons = require("bindings.globalbuttons"),
+  clientbuttons = require("bindings.clientbuttons"),
+  globalkeys = require("bindings.globalkeys"),
+  clientkeys = require("bindings.clientkeys"),
+  bindtotags = require("bindings.bindtotags")
 }
 
 RC.layouts = main.layouts()
@@ -59,8 +59,8 @@ RC.tags = main.tags()
 
 RC.mainmenu = main.menu()
 RC.launcher = awful.widget.launcher({
-    image = beautiful.awesome_subicon,
-    menu = RC.mainmenu
+  image = beautiful.awesome_subicon,
+  menu = RC.mainmenu
 })
 
 menubar.utils.terminal = RC.vars.terminal
@@ -95,4 +95,4 @@ require("main.signals")
 -- Autostart
 awful.spawn.with_shell("~/.screenlayout/dual-monitor.sh")
 awful.spawn.with_shell("picom")
-awful.spawn.with_shell("nitrogen --restore")
+awful.spawn.with_shell("sleep 2 && nitrogen --restore")
