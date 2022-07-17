@@ -54,9 +54,9 @@ theme.titlebar_fg_focus = gmc.color['black'] .. "cc"
 -- Generate taglist squares:
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-                                taglist_square_size, gmc.color['black'])
+  taglist_square_size, gmc.color['black'])
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-                                  taglist_square_size, gmc.color['white'])
+  taglist_square_size, gmc.color['white'])
 
 -- Display the taglist squares
 
