@@ -157,4 +157,6 @@ return require('packer').startup(function()
       }
     end
   }
+  use 'habamax/vim-godot'
+
 end)
