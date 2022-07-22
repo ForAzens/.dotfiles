@@ -2,6 +2,7 @@ local utils = require('utils')
 
 utils.map('n', '<C-l>', '<cmd>noh<CR>') -- Clear highlights
 utils.map('i', 'jk', '<Esc>') -- jk to escape
+utils.map('t', 'jk', '<C-\\><C-N>') -- jk to escape in terminal mode
 
 -- File explorer
 utils.map('n', '<leader>tt', ':NvimTreeToggle<CR>')
