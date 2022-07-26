@@ -26,22 +26,22 @@ return require('packer').startup(function()
   use { 'tami5/lspsaga.nvim' }
 
   -- Completion
-  use { 'hrsh7th/cmp-buffer' }
-  use { 'hrsh7th/cmp-path' }
-  use { 'hrsh7th/cmp-calc' }
-  use { 'hrsh7th/cmp-nvim-lua' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  -- use {'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp', after = 'nvim-cmp'}
-  use { 'David-Kunz/cmp-npm', requires = 'nvim-lua/plenary.nvim' }
+  -- use { 'hrsh7th/cmp-buffer' }
+  -- use { 'hrsh7th/cmp-path' }
+  -- use { 'hrsh7th/cmp-calc' }
+  -- use { 'hrsh7th/cmp-nvim-lua' }
+  -- use { 'hrsh7th/cmp-nvim-lsp' }
+  -- -- use {'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp', after = 'nvim-cmp'}
+  -- use { 'David-Kunz/cmp-npm', requires = 'nvim-lua/plenary.nvim' }
 
   -- Icons in completion
   use { 'onsails/lspkind-nvim' }
 
   -- Snippets
   use { 'L3MON4D3/LuaSnip' }
-  use { 'saadparwaiz1/cmp_luasnip' }
+  -- use { 'saadparwaiz1/cmp_luasnip' }
 
-  use { 'hrsh7th/nvim-cmp' }
+  -- use { 'hrsh7th/nvim-cmp' }
 
   -- Lua development
   use { 'tjdevries/nlua.nvim' }
@@ -142,10 +142,10 @@ return require('packer').startup(function()
     end,
   }
 
-  use {
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua", "nvim-cmp" },
-  }
+  -- use {
+  --   "zbirenbaum/copilot-cmp",
+  --   after = { "copilot.lua", "nvim-cmp" },
+  -- }
 
   use {
     "folke/which-key.nvim",
@@ -158,5 +158,8 @@ return require('packer').startup(function()
     end
   }
   use 'habamax/vim-godot'
+  use { 'ms-jpq/coq_nvim', branch = "coq" }
+  use { 'ms-jpq/coq.artifacts', branch = "artifacts" }
+  use { 'ms-jpq/coq.thirdparty', branch = "3p" }
 
 end)

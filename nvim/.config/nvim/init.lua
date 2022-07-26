@@ -4,8 +4,11 @@ vim.g.mapleader = ' '
 local fn = vim.fn
 local execute = vim.api.nvim_command
 
+
 -- Sensible defaults
 require('settings')
+
+-- vim.lsp.set_log_level("TRACE")
 
 -- Auto install packer.nvim if not exists
 local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
@@ -16,8 +19,19 @@ end
 vim.cmd [[packadd packer.nvim]]
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
+vim.g.coq_settings = {
+  auto_start = true,
+  clients = {
+    tmux = { enabled = false },
+  },
+}
+
 -- Install plugins
 require('plugins')
+
+-- Config
+---@diagnostic disable-next-line: different-requires
+require('config')
 
 -- LSP
 require('lsp/config')
@@ -30,9 +44,6 @@ require('lsp/gdscript')
 -- require('lsp_lua')
 require('lsp/lspinstall')
 
--- Config
----@diagnostic disable-next-line: different-requires
-require('config')
 
 -- Autocmds
 require('autocmd')

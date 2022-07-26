@@ -1,6 +1,10 @@
-require('lspconfig').gdscript.setup {
-  -- on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 500,
+local lsp = require("lspconfig")
+local coq = require("coq")
+
+lsp.gdscript.setup(coq.lsp_ensure_capabilities(
+  {
+    flags = {
+      debounce_text_changes = 150,
+    }
   }
-}
+))
