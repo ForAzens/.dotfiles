@@ -22,7 +22,10 @@ return require('packer').startup(function()
 
   -- LSP and completion
   use { 'neovim/nvim-lspconfig' }
-  use { 'williamboman/nvim-lsp-installer' }
+ use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim"
+  }
   use { 'tami5/lspsaga.nvim' }
 
   -- Completion
@@ -116,7 +119,7 @@ return require('packer').startup(function()
 
   use 'ThePrimeagen/harpoon'
 
-  use 'github/copilot.vim'
+  -- use 'github/copilot.vim'
 
   use 'simrat39/rust-tools.nvim'
   -- Lua
@@ -132,15 +135,15 @@ return require('packer').startup(function()
     end
   }
 
-  use {
-    "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
-    config = function()
-      vim.defer_fn(function()
-        require("copilot").setup()
-      end, 100)
-    end,
-  }
+  -- use {
+  --   "zbirenbaum/copilot.lua",
+  --   event = { "VimEnter" },
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require("copilot").setup()
+  --     end, 100)
+  --   end,
+  -- }
 
   -- use {
   --   "zbirenbaum/copilot-cmp",

@@ -4,7 +4,6 @@ vim.g.mapleader = ' '
 local fn = vim.fn
 local execute = vim.api.nvim_command
 
-
 -- Sensible defaults
 require('settings')
 
@@ -35,14 +34,15 @@ require('config')
 
 -- LSP
 require('lsp/config')
+require('lsp/lspinstall')
 require('lsp/ts_server')
 require('lsp/css')
 require('lsp/efm')
 require('lsp/solargraph')
 require('lsp/rust')
 require('lsp/gdscript')
+require('lsp/lua')
 -- require('lsp_lua')
-require('lsp/lspinstall')
 
 
 -- Autocmds
