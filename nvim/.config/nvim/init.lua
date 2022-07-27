@@ -16,13 +16,6 @@ end
 vim.cmd [[packadd packer.nvim]]
 vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
-vim.g.coq_settings = {
-  auto_start = true,
-  clients = {
-    tmux = { enabled = false },
-  },
-}
-
 -- Install plugins
 require('plugins')
 
