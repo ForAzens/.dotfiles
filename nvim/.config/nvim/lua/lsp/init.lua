@@ -1,0 +1,8 @@
+require('lsp/lspinstall')
+require('lsp/ts_server')
+require('lsp/css')
+require('lsp/efm')
+require('lsp/solargraph')
+require('lsp/rust')
+require('lsp/gdscript')
+require('lsp/lua')
