@@ -22,7 +22,7 @@ return require('packer').startup(function()
 
   -- LSP and completion
   use { 'neovim/nvim-lspconfig' }
- use {
+  use {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim"
   }
@@ -41,10 +41,6 @@ return require('packer').startup(function()
   use { 'onsails/lspkind-nvim' }
 
   -- Snippets
-  use { 'L3MON4D3/LuaSnip' }
-  -- use { 'saadparwaiz1/cmp_luasnip' }
-
-  -- use { 'hrsh7th/nvim-cmp' }
 
   -- Lua development
   use { 'tjdevries/nlua.nvim' }
@@ -111,8 +107,6 @@ return require('packer').startup(function()
   -- Autotags
   use { "windwp/nvim-ts-autotag" }
 
-  use 'sunjon/shade.nvim'
-
   use 'ThePrimeagen/git-worktree.nvim'
 
   use 'onsails/diaglist.nvim'
@@ -135,21 +129,6 @@ return require('packer').startup(function()
     end
   }
 
-  -- use {
-  --   "zbirenbaum/copilot.lua",
-  --   event = { "VimEnter" },
-  --   config = function()
-  --     vim.defer_fn(function()
-  --       require("copilot").setup()
-  --     end, 100)
-  --   end,
-  -- }
-
-  -- use {
-  --   "zbirenbaum/copilot-cmp",
-  --   after = { "copilot.lua", "nvim-cmp" },
-  -- }
-
   use {
     "folke/which-key.nvim",
     config = function()
@@ -161,6 +140,7 @@ return require('packer').startup(function()
     end
   }
   use 'habamax/vim-godot'
+
   use { 'ms-jpq/coq_nvim', branch = "coq" }
   use { 'ms-jpq/coq.artifacts', branch = "artifacts" }
   use { 'ms-jpq/coq.thirdparty', branch = "3p" }
