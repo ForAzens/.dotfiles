@@ -2,6 +2,9 @@ vim.g.coq_settings = {
   auto_start = 'shut-up',
   clients = {
     tmux = { enabled = false },
+    lsp = {
+      resolve_timeout = 0.15
+    }
   },
   display = {
     icons = {
