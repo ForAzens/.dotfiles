@@ -6,6 +6,9 @@ vim.g.coq_settings = {
       resolve_timeout = 0.15
     }
   },
+  keymap = {
+    jump_to_mark = "<c-m>"
+  },
   display = {
     icons = {
       mappings = {

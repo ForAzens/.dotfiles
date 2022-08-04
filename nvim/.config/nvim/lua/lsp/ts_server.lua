@@ -1,5 +1,4 @@
 local nvim_lsp = require('lspconfig')
-local coq = require('coq')
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
@@ -54,7 +53,10 @@ local tsHandlers = {
   end,
 }
 
-nvim_lsp.tsserver.setup(coq.lsp_ensure_capabilities({
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+nvim_lsp.tsserver.setup({
   on_attach = on_attach,
   handlers = tsHandlers,
-}))
+  capabilities = capabilities,
+})

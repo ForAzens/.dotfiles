@@ -1,5 +1,4 @@
 local nvim_lsp = require('lspconfig')
-local coq = require('coq')
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
@@ -18,4 +17,6 @@ local on_attach = function(client, bufnr)
 
 end
 
-nvim_lsp.solargraph.setup(coq.lsp_ensure_capabilities({ on_attach = on_attach }))
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+nvim_lsp.solargraph.setup({ on_attach = on_attach, capabilities = capabilities })
