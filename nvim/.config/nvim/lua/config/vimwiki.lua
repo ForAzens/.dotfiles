@@ -104,6 +104,38 @@ local wikiFiles = function()
   require("telescope.builtin").find_files({ cwd = config.rootPath })
 end
 
+local MAX_SIGNED_INTEGER = 2147483647
+local getSelectedText = function()
+  vim.cmd(":normal !")
+  local s_start = vim.api.nvim_buf_get_mark(0, "<")
+  local s_end = vim.api.nvim_buf_get_mark(0, ">")
+
+  vim.pretty_print(s_start)
+  vim.pretty_print(s_end)
+
+  local lines = vim.api.nvim_buf_get_lines(0, s_start[1] - 1, s_end[1], true)[1]
+
+  local selection = string.sub(lines, s_start[2] + 1, math.min(s_end[2] + 1, MAX_SIGNED_INTEGER))
+
+  return selection
+end
+
+local replace_selected_text = function(text)
+  local s_start = vim.api.nvim_buf_get_mark(0, "<")
+  local s_end = vim.api.nvim_buf_get_mark(0, ">")
+
+  if s_end[2] == MAX_SIGNED_INTEGER then
+    s_end[2] = string.len(vim.api.nvim_buf_get_lines(0, s_start[1] - 1, s_end[1], true)[1])
+  end
+
+  vim.api.nvim_buf_set_text(0,
+    s_start[1] - 1,
+    s_start[2],
+    s_end[1] - 1,
+    s_end[2],
+    { text })
+end
+
 -- Telescope picker to insert a link from any other wiki
 local setOrCreateLink = function(opts)
   opts = opts or {}
@@ -119,6 +151,8 @@ local setOrCreateLink = function(opts)
     }
     table.insert(results, item)
   end
+
+  local name = getSelectedText()
 
   pickers.new(opts, {
     prompt_title = "Create o set a new wiki link",
@@ -141,12 +175,18 @@ local setOrCreateLink = function(opts)
         local selection = action_state.get_selected_entry()
         local wiki_path = vim.api.nvim_call_function("vimwiki#vars#get_wikilocal", { "path" })
         local selected_filepath = selection.value
-        local buf_name = vim.fn.fnamemodify(selected_filepath, ":t:r") -- Get filename without path or extension. See :h filename-modifiers for more info
 
+        if not opts.selection then
+          name = vim.fn.fnamemodify(selected_filepath, ":t:r") -- Get filename without path or extension. See :h filename-modifiers for more info
+        end
         local relative_path = vim.api.nvim_call_function("vimwiki#path#relpath", { wiki_path, selected_filepath })
 
-        local link = "[" .. buf_name .. "](" .. relative_path .. ")"
-        vim.api.nvim_put({ link }, "", true, true)
+        local link = "[" .. name .. "](" .. relative_path .. ")"
+        if opts.selection then
+          replace_selected_text(link)
+        else
+          vim.api.nvim_put({ link }, "", true, true)
+        end
       end)
       return true
     end,
@@ -159,6 +199,7 @@ vim.keymap.set('n', '<leader>ws', selectNewWikiPicker)
 vim.keymap.set('n', '<leader>wf', wikiFiles)
 vim.keymap.set('n', '<leader>wg', allWikisGrep)
 vim.keymap.set('n', '<leader>wl', setOrCreateLink)
+vim.keymap.set('v', '<leader>wl', function() setOrCreateLink({ selection = true }) end)
 vim.keymap.set('n', '<leader>ww', "<cmd>VimwikiIndex 1<CR>")
 
 
