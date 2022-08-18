@@ -153,4 +153,6 @@ return require('packer').startup(function()
 
   use "rafamadriz/friendly-snippets"
 
+  use { 'vimwiki/vimwiki', branch = 'v2.5' }
+
 end)
