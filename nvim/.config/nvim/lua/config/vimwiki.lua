@@ -110,8 +110,10 @@ local get_current_buf_selected_text = function()
   local s_start = vim.api.nvim_buf_get_mark(0, "<")
   local s_end = vim.api.nvim_buf_get_mark(0, ">")
 
-  vim.pretty_print(s_start)
-  vim.pretty_print(s_end)
+  -- Return empty string if marks are not setted
+  if s_start[1] == 0 and s_start[2] == 0 and s_end[1] == 0 and s_start[2] == 0 then
+    return ""
+  end
 
   local lines = vim.api.nvim_buf_get_lines(0, s_start[1] - 1, s_end[1], true)[1]
 
