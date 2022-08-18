@@ -15,7 +15,7 @@ local config = {
 local scan_dir = require('plenary.scandir').scan_dir
 
 -- Generate config for the folder which has an index.md in their root
-local getWikiFolders = function()
+local get_vimwiki_folders_config = function()
   local wikiFolders = scan_dir(config.rootPath,
     { depth = config.maxDepth, search_pattern = "index.md", respect_gitignore = true })
 
@@ -41,8 +41,8 @@ local getWikiFolders = function()
   return list
 end
 
-local updateWikiFolders = function()
-  local folders_list = getWikiFolders()
+local update_vimwiki_folders_config = function()
+  local folders_list = get_vimwiki_folders_config()
 
   vim.g.vimwiki_list = folders_list
   vim.api.nvim_call_function("vimwiki#vars#init", {})
@@ -55,7 +55,7 @@ local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 
 -- Telescope picker to change selected wiki
-local selectNewWikiPicker = function(opts)
+local vimwiki_select_wiki = function(opts)
   opts = opts or {}
   local results = {}
   local number_of_wikis = vim.api.nvim_call_function("vimwiki#vars#number_of_wikis", {})
@@ -85,7 +85,7 @@ local selectNewWikiPicker = function(opts)
     attach_mappings = function(prompt_bufnr, _)
       actions.select_default:replace(function()
         actions.close(prompt_bufnr)
-        updateWikiFolders()
+        update_vimwiki_folders_config()
         local selection = action_state.get_selected_entry()
         vim.api.nvim_call_function("vimwiki#base#goto_index", { selection.value })
       end)
@@ -95,17 +95,17 @@ local selectNewWikiPicker = function(opts)
 end
 
 -- Telescope picker to search within the wiki folder
-local allWikisGrep = function()
+local vimwiki_grep = function()
   require("telescope.builtin").live_grep({ cwd = config.rootPath })
 end
 
 -- Telescope picker to search files in the wiki folder
-local wikiFiles = function()
+local vimwiki_files = function()
   require("telescope.builtin").find_files({ cwd = config.rootPath })
 end
 
 local MAX_SIGNED_INTEGER = 2147483647
-local getSelectedText = function()
+local get_current_buf_selected_text = function()
   vim.cmd(":normal !")
   local s_start = vim.api.nvim_buf_get_mark(0, "<")
   local s_end = vim.api.nvim_buf_get_mark(0, ">")
@@ -124,8 +124,11 @@ local replace_selected_text = function(text)
   local s_start = vim.api.nvim_buf_get_mark(0, "<")
   local s_end = vim.api.nvim_buf_get_mark(0, ">")
 
-  if s_end[2] == MAX_SIGNED_INTEGER then
-    s_end[2] = string.len(vim.api.nvim_buf_get_lines(0, s_start[1] - 1, s_end[1], true)[1])
+  s_end[2] = s_end[2] + 1 -- Increment end_col to place mark where the cursor is
+
+  if s_end[2] >= MAX_SIGNED_INTEGER then
+    local line_length = string.len(vim.api.nvim_buf_get_lines(0, s_start[1] - 1, s_end[1], true)[1])
+    s_end[2] = line_length
   end
 
   vim.api.nvim_buf_set_text(0,
@@ -137,7 +140,7 @@ local replace_selected_text = function(text)
 end
 
 -- Telescope picker to insert a link from any other wiki
-local setOrCreateLink = function(opts)
+local vimwiki_set_link = function(opts)
   opts = opts or {}
   local files = scan_dir(config.rootPath,
     { depth = config.maxDepth, respect_gitignore = true })
@@ -152,7 +155,7 @@ local setOrCreateLink = function(opts)
     table.insert(results, item)
   end
 
-  local name = getSelectedText()
+  local name = get_current_buf_selected_text()
 
   pickers.new(opts, {
     prompt_title = "Create o set a new wiki link",
@@ -195,13 +198,13 @@ local setOrCreateLink = function(opts)
 end
 
 
-vim.keymap.set('n', '<leader>ws', selectNewWikiPicker)
-vim.keymap.set('n', '<leader>wf', wikiFiles)
-vim.keymap.set('n', '<leader>wg', allWikisGrep)
-vim.keymap.set('n', '<leader>wl', setOrCreateLink)
-vim.keymap.set('v', '<leader>wl', function() setOrCreateLink({ selection = true }) end)
+vim.keymap.set('n', '<leader>ws', vimwiki_select_wiki)
+vim.keymap.set('n', '<leader>wf', vimwiki_files)
+vim.keymap.set('n', '<leader>wg', vimwiki_grep)
+vim.keymap.set('n', '<leader>wl', vimwiki_set_link)
+vim.keymap.set('v', '<leader>wl', function() vimwiki_set_link({ selection = true }) end)
 vim.keymap.set('n', '<leader>ww', "<cmd>VimwikiIndex 1<CR>")
 
 
 -- Update the wiki folders when executing neovim
-updateWikiFolders()
+update_vimwiki_folders_config()
