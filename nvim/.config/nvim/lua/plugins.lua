@@ -72,7 +72,7 @@ return require('packer').startup(function()
   use 'windwp/nvim-autopairs'
 
   -- Comments
-  use { 'numToStr/Comment.nvim', tag = 'v0.6' }
+  use { 'numToStr/Comment.nvim', tag = 'v0.7.0' }
 
   -- Colorizer
   use 'norcalli/nvim-colorizer.lua'
@@ -94,7 +94,7 @@ return require('packer').startup(function()
   -- use 'ggandor/lightspeed.nvim'
   use {
     'phaazon/hop.nvim',
-    branch = 'v1.3', -- optional but strongly recommended
+    tag = 'v2.0.3', -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
       require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
@@ -152,7 +152,5 @@ return require('packer').startup(function()
   } }
 
   use "rafamadriz/friendly-snippets"
-
-  use { 'vimwiki/vimwiki', branch = 'v2.5' }
 
 end)
