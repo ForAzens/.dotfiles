@@ -13,7 +13,7 @@ local on_attach = function(client, bufnr)
   --
 
   -- Disable tsserver formatting
-  client.resolved_capabilities.document_formatting = false
+  client.server_capabilities.documentFormattingProvider = false
 
 end
 
