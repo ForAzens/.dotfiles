@@ -1,6 +1,7 @@
 require('config.colorscheme')
 require('config.treesitter')
 require('config.treesitter-playground')
+require('config.treesitter-context')
 require('config.file_explorer')
 require('config.lualine')
 require('config.autopairs')

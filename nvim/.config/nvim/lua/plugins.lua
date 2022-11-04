@@ -60,6 +60,7 @@ return require('packer').startup(function()
   use { "JoosepAlviste/nvim-ts-context-commentstring" }
   use { 'nvim-treesitter/nvim-treesitter-textobjects' }
   use { 'nvim-treesitter/playground' }
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- File explorer
   use { 'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons' }
