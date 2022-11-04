@@ -28,6 +28,8 @@ return require('packer').startup(function()
   }
   use { 'tami5/lspsaga.nvim' }
 
+  use({ "https://git.sr.ht/~whynothugo/lsp_lines.nvim" })
+
   -- Completion
   -- use { 'hrsh7th/cmp-buffer' }
   -- use { 'hrsh7th/cmp-path' }
