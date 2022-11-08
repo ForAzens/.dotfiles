@@ -175,4 +175,6 @@ return require('packer').startup(function()
 
   use "rafamadriz/friendly-snippets"
 
+  use { "jose-elias-alvarez/null-ls.nvim", requires = { { 'nvim-lua/plenary.nvim' } } }
+
 end)
