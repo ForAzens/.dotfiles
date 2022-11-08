@@ -179,4 +179,6 @@ return require('packer').startup(function()
 
   use { "jose-elias-alvarez/typescript.nvim", branch = "main" }
 
+  use { "ray-x/lsp_signature.nvim", tag = "v0.2.0" }
+
 end)
