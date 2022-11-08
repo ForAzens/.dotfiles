@@ -1,7 +1,6 @@
 local u = require("utils")
 local default_config = require("lsp.providers.defaults")
 
-
 local function create_handler(client_name, setup_func)
   -- Support for custom setup_functions
   if setup_func == nil then
@@ -15,20 +14,24 @@ local function create_handler(client_name, setup_func)
     opts = u.merge(opts, client_config)
   end
 
-  return function()
-    setup_func(opts)
-  end
+  return function() setup_func(opts) end
 end
 
 require("mason").setup()
 require("mason-lspconfig").setup()
 
 require("mason-lspconfig").setup_handlers {
-  ["tsserver"] = create_handler("tsserver"),
-  ["rust_analyzer"] = create_handler("rust_analyzer", require("rust-tools").setup),
+  ["tsserver"] = create_handler("tsserver", function(...)
+    require("typescript").setup({
+      go_to_source_definition = { fallback = true },
+      server = ...
+    })
+  end),
+  ["rust_analyzer"] = create_handler("rust_analyzer",
+    require("rust-tools").setup),
   ["sumneko_lua"] = create_handler("sumneko_lua"),
   ["solargraph"] = create_handler("solargraph"),
-  ["cssls"] = create_handler("cssls"),
+  ["cssls"] = create_handler("cssls")
   -- ["gdscript"] = create_handler("gdscript")
 }
 

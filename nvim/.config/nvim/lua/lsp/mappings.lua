@@ -35,9 +35,9 @@ function M.init(client, bufnr)
 
   if client.name == 'tsserver' then
     -- typescript helpers
-    set_keymap('n', '<leader>gr', ':TSLspRenameFile<CR>')
-    set_keymap('n', '<leader>go', ':TSLspOrganize<CR>')
-    set_keymap('n', '<leader>gi', ':TSLspImportAll<CR>')
+    set_keymap('n', '<leader>gr', ':TypescriptRenameFile<CR>')
+    set_keymap('n', '<leader>go', ':TypescriptOrganizeImports<CR>')
+    set_keymap('n', '<leader>gi', ':TypescriptAddMissingImports<CR>')
   end
 end
 

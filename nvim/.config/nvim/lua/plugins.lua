@@ -175,6 +175,8 @@ return require('packer').startup(function()
 
   use "rafamadriz/friendly-snippets"
 
-  use { "jose-elias-alvarez/null-ls.nvim", requires = { { 'nvim-lua/plenary.nvim' } } }
+  use { "jose-elias-alvarez/null-ls.nvim", branch = "main", requires = { { 'nvim-lua/plenary.nvim' } } }
+
+  use { "jose-elias-alvarez/typescript.nvim", branch = "main" }
 
 end)

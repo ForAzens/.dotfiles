@@ -17,7 +17,7 @@ return {
     -- null_ls.builtins.diagnostics.gdscript_godot,
 
     -- Lua
-    null_ls.builtins.formatting.lua_format,
+    -- null_ls.builtins.formatting.lua_format,
 
   }
 }
