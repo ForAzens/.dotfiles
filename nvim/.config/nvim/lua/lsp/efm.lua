@@ -32,7 +32,12 @@ local languages = {
   gdscript = { gdformat, gdlint }
 }
 
+local on_attach = function(client, bufnr)
+  require('lsp.mappings').init(client, bufnr)
+end
+
 require 'lspconfig'.efm.setup {
+  on_attach = on_attach,
   init_options = { documentFormatting = true },
   filetypes = vim.tbl_keys(languages),
   settings = { rootMarkers = { ".git/", "package.json" }, languages = languages }
