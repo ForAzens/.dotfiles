@@ -1,7 +1,7 @@
-local nvim_lsp = require('lspconfig')
+local default_on_attach = require("lsp.providers.defaults").on_attach
 
 local on_attach = function(client, bufnr)
-  require('lsp.mappings').init(client, bufnr)
+  default_on_attach(client, bufnr)
 
   -- Disable tsserver formatting
   client.server_capabilities.documentFormattingProvider = false
@@ -44,10 +44,7 @@ local tsHandlers = {
   end,
 }
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-nvim_lsp.tsserver.setup({
+return {
   on_attach = on_attach,
   handlers = tsHandlers,
-  capabilities = capabilities,
-})
+}

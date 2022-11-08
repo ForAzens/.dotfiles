@@ -19,4 +19,16 @@ function utils.buf_map(mode, lhs, rhs, buffer, opts)
   vim.api.nvim_buf_set_keymap(buffer, mode, lhs, rhs, options)
 end
 
+function utils.merge(...)
+  return vim.tbl_deep_extend("force", ...)
+end
+
+-- Require which returns nil if module does not exist
+function utils.prequire(...)
+  local status, lib = pcall(require, ...)
+  if (status) then return lib end
+  -- Failed to load
+  return nil
+end
+
 return utils

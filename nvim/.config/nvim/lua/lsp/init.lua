@@ -1,11 +1,5 @@
-require('lsp/lspinstall')
-require('lsp/ts_server')
-require('lsp/css')
-require('lsp/efm')
-require('lsp/solargraph')
-require('lsp/rust')
-require('lsp/gdscript')
-require('lsp/lua')
+-- require('lsp/efm')
+require('lsp/providers')
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = 'rounded',
