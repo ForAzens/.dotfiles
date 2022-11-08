@@ -10,7 +10,7 @@ utils.map('n', '<leader>tr', ':NvimTreeRefresh<CR>')
 utils.map('n', '<leader>tn', ':NvimTreeFindFile<CR>')
 
 -- Git
-utils.map('n', '<leader>gs', ':Neogit<CR>')
+utils.map('n', '<leader>gs', ':Git<CR>')
 utils.map('n', '<leader>gb', ':Telescope git_branches<CR>')
 
 -- Telescope
