@@ -25,9 +25,14 @@ require("mason-lspconfig").setup()
 
 require("mason-lspconfig").setup_handlers {
   ["tsserver"] = create_handler("tsserver"),
-  ["rust-analyzer"] = create_handler("rust-analyzer", require("rust-tools").setup),
+  ["rust_analyzer"] = create_handler("rust_analyzer", require("rust-tools").setup),
   ["sumneko_lua"] = create_handler("sumneko_lua"),
   ["solargraph"] = create_handler("solargraph"),
   ["cssls"] = create_handler("cssls"),
   -- ["gdscript"] = create_handler("gdscript")
 }
+
+-- null-ls is not a lsp server, it needs to be outside the previous table
+local null_ls = require("null-ls")
+local create_null_ls_handler = create_handler("null-ls", null_ls.setup)
+create_null_ls_handler()
