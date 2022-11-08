@@ -42,13 +42,11 @@ return require('packer').startup(function()
   -- Icons in completion
   use { 'onsails/lspkind-nvim' }
 
-  -- Snippets
-
   -- Lua development
   use { 'tjdevries/nlua.nvim' }
 
   -- Vim dispatch
-  use { 'tpope/vim-dispatch' }
+  -- use { 'tpope/vim-dispatch' }
 
   -- Fugitive for Git
   use { 'tpope/vim-fugitive' }
@@ -90,8 +88,8 @@ return require('packer').startup(function()
   use "lukas-reineke/indent-blankline.nvim"
 
   -- Magit clone
-  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+  -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   -- Hop
   -- use 'ggandor/lightspeed.nvim'
@@ -131,7 +129,11 @@ return require('packer').startup(function()
     "zbirenbaum/copilot-cmp",
     after = { "copilot.lua" },
     config = function()
-      require("copilot_cmp").setup()
+      require("copilot_cmp").setup {
+        formatters = {
+          insert_text = require("copilot_cmp.format").remove_existing
+        }
+      }
     end
   }
 
