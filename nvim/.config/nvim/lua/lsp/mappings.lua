@@ -26,7 +26,7 @@ function M.init(client, bufnr)
   set_keymap('v', '<leader>cf', '<cmd>lua vim.lsp.buf.range_formatting()<cr>')
 
   -- signature help
-  set_keymap('n', '<C-K>', '<cmd>lua require("lsp_signature").signature()<cr>')
+  -- set_keymap('n', '<C-K>', '<cmd>lua require("lsp_signature").signature()<cr>')
 
   -- lsp workspace
   set_keymap('n', '<leader>wd', '<cmd>Telescope diagnostics<cr>')

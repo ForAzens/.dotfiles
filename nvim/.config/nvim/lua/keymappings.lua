@@ -2,12 +2,14 @@ local utils = require('utils')
 
 utils.map('n', '<C-l>', '<cmd>noh<CR>') -- Clear highlights
 utils.map('i', 'jk', '<Esc>') -- jk to escape
-utils.map('t', 'jk', '<C-\\><C-N>') -- jk to escape in terminal mode
+-- utils.map('t', 'jk', '<C-\\><C-N>') -- jk to escape in terminal mode
 
 -- File explorer
-utils.map('n', '<leader>tt', ':NvimTreeToggle<CR>')
-utils.map('n', '<leader>tr', ':NvimTreeRefresh<CR>')
-utils.map('n', '<leader>tn', ':NvimTreeFindFile<CR>')
+-- utils.map('n', '<leader>tt', ':NvimTreeToggle<CR>')
+-- utils.map('n', '<leader>tr', ':NvimTreeRefresh<CR>')
+-- utils.map('n', '<leader>tn', ':NvimTreeFindFile<CR>')
+utils.map('n', '<leader>T', ':NnnExplorer<CR>')
+utils.map('n', '<leader>t', ':NnnPicker %:p:h<CR>')
 
 -- Git
 utils.map('n', '<leader>gs', ':Git<CR>')
@@ -58,8 +60,8 @@ utils.map('n', '<C-w>l', ':TmuxNavigateRight<CR>', { silent = true })
 -- Harpoon
 utils.map('n', '<leader>a', ':lua require("harpoon.mark").add_file()<CR>')
 utils.map('n', '<C-e>', ':lua require("harpoon.ui").toggle_quick_menu()<CR>')
-utils.map('n', '<leader>tc',
-  ':lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>')
+-- utils.map('n', '<leader>tc',
+--   ':lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>')
 
 utils.map('n', '<C-H>', ':lua require("harpoon.ui").nav_file(1)<CR>', { silent = true })
 utils.map('n', '<C-J>', ':lua require("harpoon.ui").nav_file(2)<CR>', { silent = true })

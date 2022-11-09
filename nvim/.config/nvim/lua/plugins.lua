@@ -181,4 +181,16 @@ return require('packer').startup(function()
 
   use { "ray-x/lsp_signature.nvim", tag = "v0.2.0" }
 
+  use {
+    "luukvbaal/nnn.nvim",
+    config = function() require("nnn").setup({
+        picker = {
+          cmd = "nnn",
+          style = { border = "rounded" },
+          session = "shared"
+        }
+      })
+    end
+  }
+
 end)
