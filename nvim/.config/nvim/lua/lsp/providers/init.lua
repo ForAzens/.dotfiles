@@ -31,9 +31,35 @@ require("mason-lspconfig").setup_handlers {
     require("rust-tools").setup),
   ["sumneko_lua"] = create_handler("sumneko_lua"),
   ["solargraph"] = create_handler("solargraph"),
-  ["cssls"] = create_handler("cssls")
-  -- ["gdscript"] = create_handler("gdscript")
+  ["cssls"] = create_handler("cssls"),
+  ["astro"] = create_handler("astro"),
+  ["tailwindcss"] = create_handler("tailwindcss"),
+  ["jsonls"] = create_handler("jsonls"),
+  ["html"] = create_handler("html"),
+  ["yamlls"] = create_handler("yamlls"),
+  ["dockerls"] = create_handler("dockerls"),
+  ["bashls"] = create_handler("bashls"),
+  ["vimls"] = create_handler("vimls"),
+  ["pyright"] = create_handler("pyright"),
+  ["terraformls"] = create_handler("terraformls"),
+  ["gopls"] = create_handler("gopls"),
+  ["denols"] = create_handler("denols"),
+  ["cmake"] = create_handler("cmake"),
+  ["clangd"] = create_handler("clangd"),
+  ["elixirls"] = create_handler("elixirls"),
+  ["erlangls"] = create_handler("erlangls"),
+  ["hls"] = create_handler("hls"),
+  ["jdtls"] = create_handler("jdtls"),
+  ["kotlin_language_server"] = create_handler("kotlin_language_server"),
+  ["svelte"] = create_handler("svelte"),
+  ["texlab"] = create_handler("texlab"),
+  ["vimls"] = create_handler("vimls"),
+  ["vuels"] = create_handler("vuels"),
 }
+
+local gdscript_handler = create_handler("gdscript")
+gdscript_handler()
+
 
 -- null-ls is not a lsp server, it needs to be outside the previous table
 local null_ls = require("null-ls")
