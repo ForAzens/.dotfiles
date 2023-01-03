@@ -56,4 +56,22 @@ return require('packer').startup(function(use)
   use 'echasnovski/mini.nvim'
   use 'echasnovski/mini.pairs'
   use 'echasnovski/mini.surround'
+
+  -- Copilot
+  use {
+    "zbirenbaum/copilot.lua",
+    event = "VimEnter",
+    config = function()
+      vim.defer_fn(function()
+        require("copilot").setup()
+      end, 100)
+    end,
+  }
+  use {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua" },
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  }
 end)
