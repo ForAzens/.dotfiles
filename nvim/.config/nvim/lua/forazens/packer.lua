@@ -51,4 +51,9 @@ return require('packer').startup(function(use)
   }
 
   use 'christoomey/vim-tmux-navigator'
+
+  use 'echasnovski/mini.ai'
+  use 'echasnovski/mini.nvim'
+  use 'echasnovski/mini.pairs'
+  use 'echasnovski/mini.surround'
 end)
