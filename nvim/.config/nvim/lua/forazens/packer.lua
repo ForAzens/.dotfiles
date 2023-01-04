@@ -74,4 +74,6 @@ return require('packer').startup(function(use)
       require("copilot_cmp").setup()
     end
   }
+
+  use "elihunter173/dirbuf.nvim"
 end)
