@@ -77,5 +77,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  use "elihunter173/dirbuf.nvim"
+  -- use "elihunter173/dirbuf.nvim"
+  use "stevearc/oil.nvim"
 end)
