@@ -14,19 +14,4 @@ vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
   { import = "forazens.plugins" },
-  'theprimeagen/harpoon',
-  'mbbill/undotree',
-  'tpope/vim-fugitive',
-
-
-  'christoomey/vim-tmux-navigator',
-
-  'echasnovski/mini.ai',
-  'echasnovski/mini.nvim',
-  'echasnovski/mini.pairs',
-  'echasnovski/mini.surround',
-
-
-  -- use "elihunter173/dirbuf.nvim"
-  
 })

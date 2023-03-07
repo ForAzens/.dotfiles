@@ -21,9 +21,3 @@ vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>n", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>p", "<cmd>lprev<CR>zz")
-
--- Tmux navigator
-vim.keymap.set('n', '<C-w>h', ':TmuxNavigateLeft<CR>', { silent = true })
-vim.keymap.set('n', '<C-w>j', ':TmuxNavigateDown<CR>', { silent = true })
-vim.keymap.set('n', '<C-w>k', ':TmuxNavigateUp<CR>', { silent = true })
-vim.keymap.set('n', '<C-w>l', ':TmuxNavigateRight<CR>', { silent = true })

@@ -109,6 +109,7 @@ return {
     },
   },
 
+  -- File explorer
   {
     "stevearc/oil.nvim",
     event = "VeryLazy",
@@ -118,4 +119,51 @@ return {
     end,
   },
 
+  -- Harpoon
+  {
+    "theprimeagen/harpoon",
+    keys = function()
+      local mark = require("harpoon.mark")
+      local ui = require("harpoon.ui")
+
+      return {
+        { "<leader>a", mark.add_file,                 desc = "Add to Harpoon" },
+        { "<C-e>",     ui.toggle_quick_menu,          desc = "Harpoon Quick Menu" },
+        { "<C-h>",     function() ui.nav_file(1) end, desc = "Goto Harpoon 1" },
+        { "<C-j>",     function() ui.nav_file(2) end, desc = "Goto Harpoon 2" },
+        { "<C-k>",     function() ui.nav_file(3) end, desc = "Goto Harpoon 3" },
+        { "<C-l>",     function() ui.nav_file(4) end, desc = "Goto Harpoon 4" },
+
+      }
+    end
+  },
+  --
+  --
+  -- Undotree
+  {
+    'mbbill/undotree',
+    cmd = 'UndotreeToggle',
+    keys = {
+      { "<leader>fu", "<cmd>UndotreeToggle<cr>", desc = "Undotree" },
+    }
+  },
+  --
+  -- Tmux navigation
+  {
+    'christoomey/vim-tmux-navigator',
+    keys = {
+      { '<C-w>h', '<cmd>TmuxNavigateLeft<cr>',  desc = "Focus left pane" },
+      { '<C-w>j', '<cmd>TmuxNavigateDown<cr>',  desc = "Focus bottom pane" },
+      { '<C-w>k', '<cmd>TmuxNavigateUp<cr>',    desc = "Focus top pane" },
+      { '<C-w>l', '<cmd>TmuxNavigateRight<cr>', desc = "Focus right pane" },
+    },
+    config = function()
+      vim.cmd('let g:tmux_navigator_no_mappings = 1')
+    end
+  },
+
+  'echasnovski/mini.ai',
+  'echasnovski/mini.nvim',
+  'echasnovski/mini.pairs',
+  'echasnovski/mini.surround',
 }
