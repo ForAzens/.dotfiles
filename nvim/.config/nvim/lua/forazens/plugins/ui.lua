@@ -78,4 +78,14 @@ return {
 
   -- icons
   { "nvim-tree/nvim-web-devicons", lazy = true },
+
+  -- no neck pain
+  {
+    "shortcuts/no-neck-pain.nvim",
+    version = "*",
+    cmd = "NoNeckPain",
+    keys = {
+      { '<leader>uc', '<cmd>NoNeckPain<cr>', desc = "Center buffer" }
+    }
+  }
 }
