@@ -6,6 +6,7 @@ return {
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },
       { 'williamboman/mason-lspconfig.nvim' },
+      { 'jose-elias-alvarez/typescript.nvim' },
 
       -- Autocompletion
       { 'hrsh7th/nvim-cmp' },
@@ -33,10 +34,10 @@ return {
       local cmp = require('cmp')
       local cmp_select = { behavior = cmp.SelectBehavior.Select }
       local cmp_mappings = lsp.defaults.cmp_mappings({
-        ['C-p'] = cmp.mapping.select_prev_item(cmp_select),
-        ['C-n'] = cmp.mapping.select_next_item(cmp_select),
-        ['<CR>'] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
-        ['C-Space'] = cmp.mapping.complete(),
+            ['C-p'] = cmp.mapping.select_prev_item(cmp_select),
+            ['C-n'] = cmp.mapping.select_next_item(cmp_select),
+            ['<CR>'] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace }),
+            ['C-Space'] = cmp.mapping.complete(),
       })
 
       -- Config copilot
@@ -48,8 +49,7 @@ return {
         sources = cmp_sources
       })
 
-
-      lsp.on_attach(function(client, bufnr)
+      local on_attach = function(client, bufnr)
         local opts = { buffer = bufnr, remap = false }
 
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -62,7 +62,19 @@ return {
         vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
         vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-      end)
+      end
+
+
+      lsp.on_attach(on_attach)
+
+      lsp.skip_server_setup({ "tsserver" })
+      require("typescript").setup({
+        server = {
+          on_attach = on_attach,
+        }
+      }
+      )
+
 
       lsp.nvim_workspace()
 
