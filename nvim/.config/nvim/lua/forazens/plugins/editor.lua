@@ -162,8 +162,9 @@ return {
     end
   },
 
-  'echasnovski/mini.ai',
-  'echasnovski/mini.nvim',
-  'echasnovski/mini.pairs',
-  'echasnovski/mini.surround',
+  { 'echasnovski/mini.ai',       config = function() require('mini.ai').setup() end },
+  { 'echasnovski/mini.nvim',     config = function() require('mini.comment').setup() end },
+  { 'echasnovski/mini.pairs',    config = function() require('mini.pairs').setup() end },
+  { 'echasnovski/mini.surround', config = function() require('mini.surround').setup() end },
+
 }
