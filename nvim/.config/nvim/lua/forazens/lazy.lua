@@ -28,5 +28,5 @@ return require("lazy").setup({
 
 
   -- use "elihunter173/dirbuf.nvim"
-  "stevearc/oil.nvim"
+  
 })

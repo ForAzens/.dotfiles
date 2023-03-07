@@ -1,6 +1,7 @@
 return {
-  "rose-pine/neovim",
-  config = function(_, opts)
-    vim.cmd('colorscheme rose-pine')
+  "folke/tokyonight.nvim",
+  lazy = false,
+  config = function(_, _)
+    vim.cmd('colorscheme tokyonight-night')
   end
 }
