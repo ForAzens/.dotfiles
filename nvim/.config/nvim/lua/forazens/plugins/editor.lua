@@ -112,7 +112,7 @@ return {
   -- File explorer
   {
     "stevearc/oil.nvim",
-    event = "VeryLazy",
+    lazy = false,
     config = function()
       require("oil").setup()
       vim.keymap.set("n", "-", require("oil").open, { desc = "Open parent directory" })
@@ -162,9 +162,35 @@ return {
     end
   },
 
-  { 'echasnovski/mini.ai',       config = function() require('mini.ai').setup() end },
-  { 'echasnovski/mini.nvim',     config = function() require('mini.comment').setup() end },
-  { 'echasnovski/mini.pairs',    config = function() require('mini.pairs').setup() end },
-  { 'echasnovski/mini.surround', config = function() require('mini.surround').setup() end },
+  {
+    'echasnovski/mini.ai',
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("mini.ai").setup()
+    end
+  },
+  'echasnovski/mini.nvim',
+  {
+    'echasnovski/mini.pairs',
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("mini.pairs").setup()
+    end
+  },
+  {
+    'echasnovski/mini.surround',
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("mini.surround").setup()
+    end
+  },
 
+  {
+    'echasnovski/mini.nvim',
+    event = "VeryLazy",
+    version = false,
+    config = function()
+      require('mini.comment').setup()
+    end
+  },
 }
