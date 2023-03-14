@@ -3,7 +3,7 @@ return {
     build = ':TSUpdate',
     event = { 'BufReadPost', 'BufNewFile' },
     opts = {
-      hightlight = {
+      highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
       },
