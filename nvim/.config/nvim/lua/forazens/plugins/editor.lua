@@ -158,7 +158,8 @@ return {
       { '<C-w>l', '<cmd>TmuxNavigateRight<cr>', desc = "Focus right pane" },
     },
     config = function()
-      vim.cmd('let g:tmux_navigator_no_mappings = 1')
+      -- vim.cmd('let g:tmux_navigator_no_mappings = 1')
+      vim.g.tmux_navigator_no_mappings = 1
     end
   },
 
