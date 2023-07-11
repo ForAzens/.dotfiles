@@ -120,23 +120,6 @@ return {
   },
 
   -- Harpoon
-  {
-    "theprimeagen/harpoon",
-    keys = function()
-      local mark = require("harpoon.mark")
-      local ui = require("harpoon.ui")
-
-      return {
-        { "<leader>a", mark.add_file,                 desc = "Add to Harpoon" },
-        { "<C-e>",     ui.toggle_quick_menu,          desc = "Harpoon Quick Menu" },
-        { "<C-h>",     function() ui.nav_file(1) end, desc = "Goto Harpoon 1" },
-        { "<C-j>",     function() ui.nav_file(2) end, desc = "Goto Harpoon 2" },
-        { "<C-k>",     function() ui.nav_file(3) end, desc = "Goto Harpoon 3" },
-        { "<C-l>",     function() ui.nav_file(4) end, desc = "Goto Harpoon 4" },
-
-      }
-    end
-  },
   --
   --
   -- Undotree

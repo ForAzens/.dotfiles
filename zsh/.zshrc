@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# . $HOME/.asdf/asdf.sh
+. $HOME/.asdf/asdf.sh
 source ~/.zsh_profile
 
 alias luamake=/home/azenis/.config/nvim/.servers/lua-language-server/3rd/luamake/luamake
